@@ -1,0 +1,101 @@
+////////////////////////////////////////////////
+/*   Provided Code - Please Don't Edit   */
+////////////////////////////////////////////////
+
+'use strict';
+
+playToFive();
+
+
+function playTheGame(){
+      var playerChose = getPlayerMove();
+      var computerChose = getComputerMove();
+      var winnerIs = getWinner(playerChose,computerChose);
+          alert("Player Chose: " + playerChose + " Computer Chose: " + computerChose + " Winner is " + winnerIs);
+
+      return winnerIs;
+}
+
+
+function getInput() {
+    return prompt("Please choose either 'rock', 'paper', or 'scissors'.");
+}
+function randomPlay() {
+    var randomNumber = Math.random();
+    if (randomNumber < 0.33) {
+        return "rock";
+    } else if (randomNumber < 0.66) {
+        return "paper";
+    } else {
+        return "scissors";
+    }
+}
+////////////////////////////////////////////////
+/*           Write Your Code Below            */
+////////////////////////////////////////////////
+function getPlayerMove(move) {
+   var playerMove;
+   if (move !== undefined) {
+      playerMove = move;
+   } else {
+      playerMove =  getInput ();
+   }
+
+    // Write an expression that operates on a variable called `move`
+    // If a `move` has a value, your expression should evaluate to that value.
+    // However, if `move` is not specified / is null, your expression should equal `getInput()`.
+    return playerMove;
+}
+
+function getComputerMove(move) {
+  var computerMove;
+  if (move !== undefined) {
+     computerMove = move;
+  } else {
+     computerMove = randomPlay();
+  }
+
+    // Write an expression that operates on a variable called `move`
+    // If a `move` has a value, your expression should evaluate to that value.
+    // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
+    return computerMove;
+}
+
+function getWinner(playerMove,computerMove) {
+    var winner = 'tie';
+    // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
+    // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
+    // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
+    var r = 'rock';
+    var p = 'paper';
+    var s = 'scissors';
+    	if ((playerMove == r && computerMove == s) || (playerMove == p && computerMove == r) || (playerMove == s && computerMove == p)) {
+                winner = 'player';
+		 }
+	    else if ((computerMove == r && playerMove == s) || (computerMove == p && playerMove == r) || (computerMove == s && playerMove == p)) {
+                winner = 'computer';
+		 }
+    return winner;
+}
+
+function playToFive() {
+    console.log("Let's play Rock, Paper, Scissors");
+    var playerWins = 0;
+    var computerWins = 0;
+        while(playerWins < 5  && computerWins<5){
+
+            var whoWon = playTheGame();
+            	if(whoWon=="computer") {
+                   computerWins +=1;
+                }
+                if(whoWon=="player") {
+                   playerWins += 1;
+                }
+    }
+    if (playerWins > computerWins)  {
+    	  alert ("Player Wins: " + playerWins + "  Computer Wins: " + computerWins + "  YOU WON!!");
+       } else {
+       	alert ("Player Wins: " + playerWins + "  Computer Wins: " + computerWins + "  COMPUTER WON THIS ROUND");
+       }
+    return [playerWins, computerWins];
+}
